@@ -42,14 +42,7 @@ if "username_flag" not in st.session_state:
 else:
     uploaded_file = st.file_uploader("请上传作业图片", type=["png", "jpg"])
     if uploaded_file:
-        if not os.path.isdir(f"{st.session_state.user}_wr"):
-                  os.mkdir(f"{st.session_state.user}_wr")
-        if not os.path.isdir(f"{st.session_state.user}_res"):
-                  os.mkdir(f"{st.session_state.user}_res")
-        if not os.path.exists(f"{st.session_state.user}_wr/"+uploaded_file.name):
-                  file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
-                  image = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
-                  cv2.imwrite(f"{st.session_state.user}_wr/"+uploaded_file.name, image)
+
         if "messages" not in st.session_state:
             if os.path.exists(f"{st.session_state.user}.pkl"):
                 st.session_state.messages = pickle.load(open(f"{st.session_state.user}.pkl", "rb"))
@@ -166,6 +159,14 @@ else:
                     st.session_state.messages.append({"role": "assistant", "content": response.replace("<|done|>", "")})
                     pickle.dump(st.session_state.messages, open(f"{st.session_state.user}.pkl", "wb"))
                 if st.session_state.stage == 5:
+                     if not os.path.isdir(f"{st.session_state.user}_wr"):
+                            os.mkdir(f"{st.session_state.user}_wr")
+                    if not os.path.isdir(f"{st.session_state.user}_res"):
+                            os.mkdir(f"{st.session_state.user}_res")
+                    if not os.path.exists(f"{st.session_state.user}_wr/"+uploaded_file.name):
+                            file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
+                            image = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
+                            cv2.imwrite(f"{st.session_state.user}_wr/"+datetime.now().strftime("%Y/%m/%d")+".png", image)
                     with st.chat_message("assistant"):
                         st.title("恭喜你完成错题总结！")
                         if os.path.exists(f"{st.session_state.user}_callnum.pkl"):
@@ -187,9 +188,9 @@ else:
                         st.metric(label="考点总结引导对话数", value=st.session_state.test, delta=testdt)
                         st.metric(label="错题避让引导对话数", value=st.session_state.prevention, delta=preventiondt)
                         st.metric(label="题目类型引导对话数", value=st.session_state.qtype, delta=qtypedt)
-                        pickle.dump(((thesis, thesisdt), (test, testdt), (prevention, preventiondt), (qtype, qtypedt)), open("{st.session_state.user}_callnum.pkl", "wb"))
-                        if os.path.exists("{st.session_state.user}_cal.pkl"):
-                            array = pickle.load(open("{st.session_state.user}_cal.pkl", "rb"))
+                        pickle.dump(((thesis, thesisdt), (test, testdt), (prevention, preventiondt), (qtype, qtypedt)), open(f"{st.session_state.user}_callnum.pkl", "wb"))
+                        if os.path.exists(f"{st.session_state.user}_cal.pkl"):
+                            array = pickle.load(open(f"{st.session_state.user}_cal.pkl", "rb"))
                             now = datetime.now().strftime("%Y/%m/%d")
                             for m,i in enumerate(array["日期"]):
                                 if now == i:
