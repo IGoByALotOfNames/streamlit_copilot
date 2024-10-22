@@ -1,2 +1,6 @@
 matplotlib
 pandas
+Pillow
+reportlab
+cv2
+torch
