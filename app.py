@@ -3,7 +3,6 @@ from models import *
 import streamlit as st
 import torch,torchvision
 import os
-from tqdm import tqdm
 import cv2
 import torch
 import numpy as np
@@ -59,7 +58,7 @@ def clearUp(dataset_path, model_path, result_path):
     net.eval()
     im_list = dataset_path
     with torch.no_grad():
-        for i, im_path in tqdm(enumerate(im_list), total=len(im_list)):
+        for i, im_path in enumerate(im_list), total=len(im_list):
             im = cv2.imread(im_path)
             if len(im.shape) < 3:
                 im = np.stack([im] * 3, axis=-1)  # Convert grayscale to RGB
