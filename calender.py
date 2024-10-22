@@ -9,7 +9,7 @@ import os
 col = st.columns((3, 6,4), gap='medium')
 if os.path.exists(f"{st.session_state.user}_callnum.pkl"):
   ((thesis, thesisdt), (test, testdt), (prevention, preventiondt), (qtype, qtypedt)) = pickle.load(
-    open("{st.session_state.user}_callnum.pkl", "rb"))
+    open(f"{st.session_state.user}_callnum.pkl", "rb"))
   thesis += thesisdt
   test += testdt
   prevention += preventiondt
