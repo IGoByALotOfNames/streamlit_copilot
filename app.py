@@ -113,6 +113,7 @@ def clearUp(dataset_path, model_path, result_path):
             wite = np.ones_like(im) * 255
             cropped = np.where(result == 0, wite, mask)
             cv2.imwrite(result_path + im_name + "_background.png", cropped)
+    return True
 def logout():
     st.session_state.username_flag=False
     st.session_state.user = ""
@@ -128,7 +129,7 @@ if st.session_state.username_flag:
     st.title(f"你好！{st.session_state.user}")
     times = [1,2,4,7,15]
     review_list = find_files(dataset_path, times)
-    clearUp(review_list, model_path, result_path)
+    
     if len(review_list) == 0:
         delete_page = st.Page("wrong_questions.py", title="错题分析", icon=":material/notification_important:")
         create_page = st.Page(logout, title="登出", icon=":material/logout:")
@@ -136,7 +137,9 @@ if st.session_state.username_flag:
         calendar = st.Page("calender.py", title="打卡记录", icon = ":material/dashboard:")
         pg = st.navigation({"面板":[calendar],"打卡":[delete_page],"账号":[create_page]})
     else:
-        pg=st.navigation([st.Page("review.py", title="复习")])
+        done = clearUp(review_list, model_path, result_path)
+        if done:
+            pg=st.navigation([st.Page("review.py", title="复习")])
 else:
     pg = st.navigation([st.Page(login)])
 pg.run()
