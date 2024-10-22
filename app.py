@@ -27,20 +27,20 @@ def login():
 def find_files(directory, days_list):
     # List to store the matching files
     matching_files = []
-
-    # Iterate through files in the directory
-    for filename in os.listdir(directory):
-        # Extract date from filename
-        file_date_str = filename
-
-        file_date = datetime.strptime(file_date_str.split(".")[0], '%Y/%m/%d')
-
-        # Check if file matches any of the days in the list
-        for days in days_list:
-            target_date = file_date + timedelta(days=days)
-            target_date_str = target_date.strftime('%Y/%m/%d')
-            if os.path.exists(os.path.join(directory, target_date_str+".png")):
-                matching_files.append(os.path.join(directory,filename))
+    if os.path.isdir(directory):
+        # Iterate through files in the directory
+        for filename in os.listdir(directory):
+            # Extract date from filename
+            file_date_str = filename
+    
+            file_date = datetime.strptime(file_date_str.split(".")[0], '%Y/%m/%d')
+    
+            # Check if file matches any of the days in the list
+            for days in days_list:
+                target_date = file_date + timedelta(days=days)
+                target_date_str = target_date.strftime('%Y/%m/%d')
+                if os.path.exists(os.path.join(directory, target_date_str+".png")):
+                    matching_files.append(os.path.join(directory,filename))
 
     return matching_files
 
