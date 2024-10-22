@@ -17,7 +17,7 @@ import torch.optim as optim
 import torch.nn.functional as F
 from torchvision.transforms.functional import normalize
 from models import *
-base = "D:/projmom/"
+base = ""
 def stackPDF(image_paths,output):
     c = canvas.Canvas(output, pagesize=A4)
     # Load images and get their dimensions
