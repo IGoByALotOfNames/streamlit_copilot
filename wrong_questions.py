@@ -42,7 +42,7 @@ if "username_flag" not in st.session_state:
 else:
     uploaded_file = st.file_uploader("请上传作业图片", type=["png", "jpg"])
     if uploaded_file:
-       if not os.path.isdir(f"{st.session_state.user}_wr"):
+        if not os.path.isdir(f"{st.session_state.user}_wr"):
                   os.mkdir(f"{st.session_state.user}_wr")
         if not os.path.isdir(f"{st.session_state.user}_res"):
                   os.mkdir(f"{st.session_state.user}_res")
