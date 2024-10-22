@@ -7,7 +7,7 @@ import os
 #inits = {"日期": [(datetime.now()+timedelta(days=i)).strftime("%Y/%m/%d") for i in range(100)], "打卡状态":["⬜" for _ in range(100)]}
 #pickle.dump(inits,open("{st.session_state.user}_cal.pkl","wb"))
 col = st.columns((3, 6,4), gap='medium')
-if os.path.exists("{st.session_state.user}_callnum.pkl"):
+if os.path.exists(f"{st.session_state.user}_callnum.pkl"):
   ((thesis, thesisdt), (test, testdt), (prevention, preventiondt), (qtype, qtypedt)) = pickle.load(
     open("{st.session_state.user}_callnum.pkl", "rb"))
   thesis += thesisdt
@@ -26,8 +26,8 @@ with col[0]:
   st.metric(label="错题避让引导对话数", value=prevention, delta=preventiondt)
   st.metric(label="题目类型引导对话数", value=qtype, delta=qtypedt)
 with col[2]:
-  if os.path.exists("{st.session_state.user}_cal.pkl"):
-    array = pickle.load(open("{st.session_state.user}_cal.pkl", "rb"))
+  if os.path.exists(f"{st.session_state.user}_cal.pkl"):
+    array = pickle.load(open(f"{st.session_state.user}_cal.pkl", "rb"))
     for x in array['打卡状态']:
       if x == "✅":
         st.session_state.progress+=1
