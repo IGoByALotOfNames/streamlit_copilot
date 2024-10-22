@@ -106,8 +106,6 @@ def clearUp(dataset_path, model_path, result_path):
             wite = np.ones_like(im) * 255
             cropped = np.where(result == 0, wite, mask)
             cv2.imwrite(result_path + im_name + "_background.png", cropped)
-
-clearUp(dataset_path, model_path, result_path)
 def logout():
     st.session_state.username_flag=False
     st.session_state.user = ""
@@ -125,7 +123,6 @@ if st.session_state.username_flag:
     review_list = find_files(dataset_path, times)
     clearUp(dataset_path, model_path, result_path)
     if os.path.isdir(dataset_path):
-        review_list = find_files(dataset_path, times)
         clearUp(review_list, model_path, result_path)
     if len(review_list) == 0:
         delete_page = st.Page("wrong_questions.py", title="错题分析", icon=":material/notification_important:")
