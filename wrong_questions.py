@@ -159,7 +159,7 @@ else:
                     st.session_state.messages.append({"role": "assistant", "content": response.replace("<|done|>", "")})
                     pickle.dump(st.session_state.messages, open(f"{st.session_state.user}.pkl", "wb"))
                 if st.session_state.stage == 5:
-                     if not os.path.isdir(f"{st.session_state.user}_wr"):
+                    if not os.path.isdir(f"{st.session_state.user}_wr"):
                             os.mkdir(f"{st.session_state.user}_wr")
                     if not os.path.isdir(f"{st.session_state.user}_res"):
                             os.mkdir(f"{st.session_state.user}_res")
