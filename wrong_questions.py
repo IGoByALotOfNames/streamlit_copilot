@@ -3,6 +3,8 @@ import random
 from datetime import datetime
 import os
 import pickle
+import numpy as np
+
 import time
 
 st.title("错题总结")
