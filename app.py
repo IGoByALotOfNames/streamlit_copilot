@@ -121,9 +121,7 @@ if st.session_state.username_flag:
     st.title(f"你好！{st.session_state.user}")
     times = [1,2,4,7,15]
     review_list = find_files(dataset_path, times)
-    clearUp(dataset_path, model_path, result_path)
-    if os.path.isdir(dataset_path):
-        clearUp(review_list, model_path, result_path)
+    clearUp(review_list, model_path, result_path)
     if len(review_list) == 0:
         delete_page = st.Page("wrong_questions.py", title="错题分析", icon=":material/notification_important:")
         create_page = st.Page(logout, title="登出", icon=":material/logout:")
