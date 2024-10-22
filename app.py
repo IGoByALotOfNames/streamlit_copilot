@@ -9,6 +9,7 @@ import numpy as np
 from datetime import datetime,timedelta
 import torch.nn.functional as F
 from torchvision.transforms.functional import normalize
+torch.set_warn_always(False)
 st.set_page_config(page_title="打卡APP", page_icon=":material/edit:")
 def login():
     st.header("登录")
