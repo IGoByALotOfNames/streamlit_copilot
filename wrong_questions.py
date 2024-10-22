@@ -47,7 +47,7 @@ else:
         if not os.path.isdir(f"{st.session_state.user}_res"):
                   os.mkdir(f"{st.session_state.user}_res")
         file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
-        image = cv2.imdecode(file_bytes)
+        image = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
         cv2.imwrite(f"{st.session_state.user}_wr/"+uploaded_file.name, image)
         if "messages" not in st.session_state:
             if os.path.exists(f"{st.session_state.user}.pkl"):
