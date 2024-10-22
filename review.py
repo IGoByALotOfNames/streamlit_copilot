@@ -39,9 +39,9 @@ def stackPDF(image_paths,output):
         c.drawImage(img.filename, 0, current_height - new_height, width=new_width, height=new_height)
         current_height -= new_height
     c.save()
-dataset_path=base+f"{st.session_state.user}_wr"  #Your dataset path
-model_path=base+"IS-Net/isnet.pth"  # the model path
-result_path=base+f"{st.session_state.user}_res/"  #The folder path that you want to save the results
+dataset_path=base+f"/{st.session_state.user}_wr/"  #Your dataset path
+model_path=base+"isnet.pth"  # the model path
+result_path=base+f"/{st.session_state.user}_res/"  #The folder path that you want to save the results
 input_size = [1024, 1024]
 net = ISNetDIS()
 net.load_state_dict(torch.load(model_path, map_location="cpu"))
