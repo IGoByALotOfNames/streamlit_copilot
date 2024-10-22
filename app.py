@@ -47,17 +47,17 @@ def find_files(directory, days_list):
                 target_date = file_date + timedelta(days=days)
                 target_date_str = target_date.strftime('%Y/%m/%d')
                 if os.path.exists(os.path.join(directory, target_date_str+".png")):
-                    matching_files.append(os.path.join(directory,filename))
+                    matching_files.append([os.path.join(directory,filename),days])
 
     return matching_files
 
 def clearUp(dataset_path, model_path, result_path):
-    times = [1,2,4,7,15]
+    
     input_size = [1024, 1024]
     net = ISNetDIS()
     net.load_state_dict(torch.load(model_path, map_location="cpu"))
     net.eval()
-    im_list = dataset_path
+    im_list = [datas[0] for datas in dataset_path]
     with torch.no_grad():
         for i, im_path in enumerate(im_list):
             im = cv2.imread(im_path)
@@ -113,6 +113,9 @@ def clearUp(dataset_path, model_path, result_path):
             wite = np.ones_like(im) * 255
             cropped = np.where(result == 0, wite, mask)
             cv2.imwrite(result_path + im_name + "_background.png", cropped)
+    for datas in dataset_path:
+        if datas[1] == 15:
+            os.remove(datas[0])
     return True
 def logout():
     st.session_state.username_flag=False
