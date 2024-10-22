@@ -37,9 +37,9 @@ if st.session_state.username_flag:
     st.title(f"你好！{st.session_state.user}")
     times = [1,2,4,7,15]
     review_list = []
-    if os.path.exists("{st.session_state.user}_reviews.pkl"):
+    if os.path.exists(f"{st.session_state.user}_reviews.pkl"):
 
-        reviews = pickle.load(open("{st.session_state.user}_reviews.pkl","rb"))
+        reviews = pickle.load(open(f"{st.session_state.user}_reviews.pkl","rb"))
         for rs in reviews:
             for time in times:
                 date_dt = rs[0]+timedelta(days=time)
