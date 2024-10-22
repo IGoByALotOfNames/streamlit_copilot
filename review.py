@@ -39,7 +39,7 @@ def stackPDF(image_paths,output):
         c.drawImage(img.filename, 0, current_height - new_height, width=new_width, height=new_height)
         current_height -= new_height
     c.save()
-
+result_path=f"{st.session_state.user}_res/"  #The folder path that you want to save the results
 stackPDF(result_path, f"{st.session_state.user}.pdf")
 with open(f"{st.session_state.user}.pdf", 'rb') as file:
     file_contents = file.read()
