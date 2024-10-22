@@ -4,3 +4,4 @@ Pillow
 reportlab
 opencv-contrib-python-headless
 torch
+torchvision
