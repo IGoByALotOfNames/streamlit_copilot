@@ -50,7 +50,7 @@ if st.session_state.username_flag:
         create_page = st.Page(logout, title="登出", icon=":material/logout:")
         learning = st.Page("learning_curve.py", title="记忆曲线", icon="📉")
         calendar = st.Page("calender.py", title="打卡记录", icon = ":material/dashboard:")
-        pg = st.navigation({"面板":[calendar],"打卡":[delete_page],"打卡历史":[learning],"账号":[create_page]})
+        pg = st.navigation({"面板":[calendar],"打卡":[delete_page],"账号":[create_page]})
     else:
         pg=st.navigation([])
 else:
