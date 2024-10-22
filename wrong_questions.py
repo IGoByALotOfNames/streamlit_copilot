@@ -42,13 +42,6 @@ if "username_flag" not in st.session_state:
 else:
     uploaded_file = st.file_uploader("请上传作业图片", type=["png", "jpg"])
     if uploaded_file:
-        if not os.path.isdir(f"{st.session_state.user}_wr"):
-                  os.mkdir(f"{st.session_state.user}_wr")
-        if not os.path.isdir(f"{st.session_state.user}_res"):
-                  os.mkdir(f"{st.session_state.user}_res")
-        file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
-        image = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
-        cv2.imwrite(f"{st.session_state.user}_wr/"+uploaded_file.name, image)
         if "messages" not in st.session_state:
             if os.path.exists(f"{st.session_state.user}.pkl"):
                 st.session_state.messages = pickle.load(open(f"{st.session_state.user}.pkl", "rb"))
