@@ -4,7 +4,7 @@ from datetime import datetime
 import os
 import pickle
 import numpy as np
-
+import cv2
 import time
 
 st.title("错题总结")
