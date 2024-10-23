@@ -40,6 +40,7 @@ def find_files(usr_name, days_list):
         file_date_str = filename
         #st.write(file_date_str.split("."))
         format = file_date_str.split(".")
+        st.write(format)
         if len(format)>1:
             if format[1] == "png":
                 if file_date_str.split("-")[0] == usr_name:
