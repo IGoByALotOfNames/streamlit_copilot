@@ -34,7 +34,7 @@ def login():
 def find_files(usr_name, days_list):
     # List to store the matching files
     matching_files = []
-
+    st.write(os.listdir())
     for filename in os.listdir():
         # Extract date from filename
         file_date_str = filename
