@@ -163,9 +163,7 @@ else:
                             os.mkdir(f"{st.session_state.user}_wr")
                             file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
                             image = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
-                            cv2.imwrite(f"{st.session_state.user}_wr/"+datetime.now().strftime("%Y_%m_%d")+".png", image)
-                            os.system(f"ls {st.session_state.user}_wr")
-
+                            cv2.imwrite(f"/{st.session_state.user}_wr/"+datetime.now().strftime("%Y_%m_%d")+".png", image)
                     if not os.path.isdir(f"{st.session_state.user}_res"):
                             os.mkdir(f"{st.session_state.user}_res")
                     with st.chat_message("assistant"):
