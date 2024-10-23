@@ -80,8 +80,9 @@ if st.session_state.username_flag:
     st.title(f"你好！{st.session_state.user}")
     times = [0,2,4,7,15]
     review_list = find_files(st.session_state.user, times)
+    
     os.system("ls")
-    #st.write(review_list)
+    st.write(review_list)
     if len(review_list) == 0:
         delete_page = st.Page("wrong_questions.py", title="错题分析", icon=":material/notification_important:")
         create_page = st.Page(logout, title="登出", icon=":material/logout:")
