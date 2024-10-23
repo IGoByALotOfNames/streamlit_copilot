@@ -5,7 +5,6 @@ import numpy as np
 from PIL import Image
 from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas
-from skimage import io
 import time
 from glob import glob
 from tqdm import tqdm
