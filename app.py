@@ -43,7 +43,7 @@ def find_files(usr_name, days_list):
         if file_date_str.split("-")[0] == usr_name:
             
 
-            file_date = datetime.strptime(file_date_str.split("-")[1].replace(".png",""), '%Y_%m_%d')
+            file_date = file_date_str.split("-")[1]
             st.write(file_date)
             # Check if file matches any of the days in the list
             for days in days_list:
