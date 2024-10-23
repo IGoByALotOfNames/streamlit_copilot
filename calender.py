@@ -4,8 +4,9 @@ import streamlit as st
 import pickle
 import numpy as np
 import os
-#inits = {"日期": [(datetime.now()+timedelta(days=i)).strftime("%Y/%m/%d") for i in range(100)], "打卡状态":["⬜" for _ in range(100)]}
-#pickle.dump(inits,open(f"{st.session_state.user}_cal.pkl","wb"))
+if not os.path.exists(f"{st.session_state.user}_cal.pkl"):
+  inits = {"日期": [(datetime.now()+timedelta(days=i)).strftime("%Y/%m/%d") for i in range(100)], "打卡状态":["⬜" for _ in range(100)]}
+  pickle.dump(inits,open(f"{st.session_state.user}_cal.pkl","wb"))
 col = st.columns((3, 6,4), gap='medium')
 if os.path.exists(f"{st.session_state.user}_callnum.pkl"):
   ((thesis, thesisdt), (test, testdt), (prevention, preventiondt), (qtype, qtypedt)) = pickle.load(
