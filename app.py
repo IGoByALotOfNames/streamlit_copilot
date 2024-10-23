@@ -80,6 +80,7 @@ if st.session_state.username_flag:
     model_path="isnet.pth"  # the model path
     result_path=f"{st.session_state.user}_res"  #The folder path that you want to save the results
     st.write(f"第{st.session_state.progress//10}天")
+    st.write(f"第{(st.session_state.progress//10+1)*10}天")
     st.progress(st.session_state.progress*10)
     st.title(f"你好！{st.session_state.user}")
     times = [0,2,4,7,15]
