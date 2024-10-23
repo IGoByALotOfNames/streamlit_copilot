@@ -81,10 +81,10 @@ if st.session_state.username_flag:
     result_path=f"{st.session_state.user}_res"  #The folder path that you want to save the results
     st.title(f"你好！{st.session_state.user}")
     times = [0,2,4,7,15]
+
     review_list = find_files(st.session_state.user, times)
     
     os.system("ls")
-    st.write(review_list)
     if len(review_list) == 0:
         delete_page = st.Page("wrong_questions.py", title="错题分析", icon=":material/notification_important:")
         create_page = st.Page(logout, title="登出", icon=":material/logout:")
@@ -92,9 +92,8 @@ if st.session_state.username_flag:
         calendar = st.Page("calender.py", title="打卡记录", icon = ":material/dashboard:")
         pg = st.navigation({"面板":[calendar],"打卡":[delete_page],"账号":[create_page]})
     else:
-        done = clearUp(review_list)
-        if done:
-            pg=st.navigation([st.Page("review.py", title="复习")])
+        
+        pg=st.navigation([st.Page("review.py", title="复习")])
 else:
     pg = st.navigation([st.Page(login)])
 pg.run()
