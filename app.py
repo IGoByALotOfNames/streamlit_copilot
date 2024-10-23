@@ -79,8 +79,8 @@ if st.session_state.username_flag:
     dataset_path=f"{st.session_state.user}_wr"  #Your dataset path
     model_path="isnet.pth"  # the model path
     result_path=f"{st.session_state.user}_res"  #The folder path that you want to save the results
-    st.markdown(f"<p style='text-align: left; position: absolute; top:10px;'>第{(st.session_state.progress//10)*10}天</p>", unsafe_allow_html = True)
-    st.markdown(f"<p style='text-align: right; position: relative;'>第{(st.session_state.progress//10+1)*10}天</p>", unsafe_allow_html = True)
+    st.markdown(f"<p style='text-align: left; position: absolute;'>第{(st.session_state.progress//10)*10}天</p>", unsafe_allow_html = True)
+    st.markdown(f"<p style='text-align: right; position: relative; top:0px;'>第{(st.session_state.progress//10+1)*10}天</p>", unsafe_allow_html = True)
     st.progress(st.session_state.progress*10)
     st.title(f"你好！{st.session_state.user}")
     times = [0,2,4,7,15]
