@@ -161,10 +161,11 @@ else:
                 if st.session_state.stage == 5:
                     if not os.path.isdir(f"{st.session_state.user}_wr"):
                             os.mkdir(f"{st.session_state.user}_wr")
-                    file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
-                    image = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
-                    cv2.imwrite(datetime.now().strftime("%Y_%m_%d")+".png", image)
-                    os.system(f"ls")
+                            file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
+                            image = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
+                            cv2.imwrite(f"{st.session_state.user}_wr/"+datetime.now().strftime("%Y_%m_%d")+".png", image)
+                            os.system(f"ls {st.session_state.user}_wr")
+
                     if not os.path.isdir(f"{st.session_state.user}_res"):
                             os.mkdir(f"{st.session_state.user}_res")
                     with st.chat_message("assistant"):
