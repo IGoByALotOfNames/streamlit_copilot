@@ -259,7 +259,7 @@ else:
                         file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
                         image = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
                         crop=clearUp(image, "isnet.pth")
-                        cv2.imwrite(datetime.now().strftime("%Y_%m_%d")+".png", crop)
+                        cv2.imwrite(f"{st.session_state.user}_"+datetime.now().strftime("%Y_%m_%d")+".png", crop)
                         #cv2.imwrite(f"{st.session_state.user}_"+datetime.now().strftime("%Y_%m_%d")+".png", image)
                         if crop:
                             st.page_link("calender.py",label="打卡✅")
