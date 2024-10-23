@@ -39,8 +39,6 @@ def clearUp(im, model_path, result_path):
             if torch.cuda.is_available():
                 result = result.cuda()  # Move result to GPU if available
 
-            im_name = im_path.split('\\')[-1].split('.')[0]
-
             # Resize the image to match result dimensions
             image_resized = F.upsample(image, size=result.shape[1:], mode='bilinear')
 
@@ -223,10 +221,6 @@ else:
                     pickle.dump(st.session_state.messages, open(f"{st.session_state.user}.pkl", "wb"))
                 if st.session_state.stage == 5:
           
-                    file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
-                    image = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
-                    clearUp(image, "isnet.pth", f"{st.session_state.user}_"+datetime.now().strftime("%Y_%m_%d"))
-                    #cv2.imwrite(f"{st.session_state.user}_"+datetime.now().strftime("%Y_%m_%d")+".png", image)
                     
                     with st.chat_message("assistant"):
                         st.title("恭喜你完成错题总结！")
@@ -261,6 +255,11 @@ else:
                         pickle.dump([], open(f"{st.session_state.user}.pkl", "wb"))
                         st.session_state.genFlag=False
                         st.session_state.stage=0
+                        file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
+                        image = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
+                        clearUp(image, "isnet.pth", f"{st.session_state.user}_"+datetime.now().strftime("%Y_%m_%d"))
+                        #cv2.imwrite(f"{st.session_state.user}_"+datetime.now().strftime("%Y_%m_%d")+".png", image)
+                        
 
                         st.page_link("calender.py",label="打卡✅")
                 if st.session_state.stage == 0:
