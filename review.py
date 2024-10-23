@@ -68,13 +68,14 @@ with open(f"{st.session_state.user}.pdf", 'rb') as file:
     file_contents = file.read()
 
 # Create a downloadable link for the PDF
-st.download_button(
+done = st.download_button(
     label="下载复习试卷",
     data=file_contents,
     file_name="复习试卷.pdf",
     mime="application/pdf"
 )
-
-for img in review_list:
-    os.remove(img[0])
-st.rerun()
+if done:
+    for img in review_list:
+        os.remove(img[0])
+    os.remove(f"{st.session_state.user}.pdf")
+    st.rerun()
