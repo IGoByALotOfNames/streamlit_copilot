@@ -18,7 +18,7 @@ base = ""
 def stackPDF(image_paths,output):
     c = canvas.Canvas(output, pagesize=A4)
     # Load images and get their dimensions
-    images = [Image.open(image_paths+img_path) for img_path in os.listdir(image_paths)]
+    images = [Image.open(img_path) for img_path in image_paths]
     page_width, page_height = A4
     current_height = page_height
 
@@ -37,7 +37,7 @@ def stackPDF(image_paths,output):
         current_height -= new_height
     c.save()
 result_path=f"{st.session_state.user}_res/"  #The folder path that you want to save the results
-stackPDF(result_path, f"{st.session_state.user}.pdf")
+stackPDF(st.session_state.review_list, f"{st.session_state.user}.pdf")
 with open(f"{st.session_state.user}.pdf", 'rb') as file:
     file_contents = file.read()
 
