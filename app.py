@@ -130,7 +130,7 @@ if st.session_state.username_flag:
     model_path="isnet.pth"  # the model path
     result_path=f"{st.session_state.user}_res"  #The folder path that you want to save the results
     st.title(f"你好！{st.session_state.user}")
-    times = [1,2,4,7,15]
+    times = [0,2,4,7,15]
     review_list = find_files(dataset_path, times)
     
     if len(review_list) == 0:
