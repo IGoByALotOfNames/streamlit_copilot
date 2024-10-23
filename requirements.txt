@@ -5,4 +5,3 @@ reportlab
 opencv-contrib-python-headless
 torch
 torchvision
-streamlit == 1.26.0
