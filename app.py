@@ -75,7 +75,6 @@ if "input_size" not in st.session_state:
 if "net" not in st.session_state:
     st.session_state.net = ISNetDIS()
     st.session_state.net.load_state_dict(torch.load("isnet.pth", map_location="cpu"))
-    st.session_state.net.eval()
 if st.session_state.username_flag:
     dataset_path=f"{st.session_state.user}_wr"  #Your dataset path
     model_path="isnet.pth"  # the model path
