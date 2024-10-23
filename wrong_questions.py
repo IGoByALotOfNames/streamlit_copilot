@@ -14,10 +14,7 @@ import torch.nn.functional as F
 from torchvision.transforms.functional import normalize
 def clearUp(im, model_path, result_path):
     input_size = [1024, 1024]
-    net = ISNetDIS()
-    net.load_state_dict(torch.load(model_path, map_location="cpu"))
-    net.eval()
-    im_list = [datas[0] for datas in dataset_path]
+    net = st.session_state.net
     with torch.no_grad():
             
             if len(im.shape) < 3:
