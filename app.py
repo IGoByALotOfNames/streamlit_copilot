@@ -132,6 +132,10 @@ if st.session_state.username_flag:
     st.title(f"你好！{st.session_state.user}")
     times = [0,2,4,7,15]
     review_list = find_files(dataset_path, times)
+    st.session_state.input_size = [1024, 1024]
+    st.session_state.net = ISNetDIS()
+    st.session_state.net.load_state_dict(torch.load(model_path, map_location="cpu"))
+    st.session_state.net.eval()
     
     if len(review_list) == 0:
         delete_page = st.Page("wrong_questions.py", title="错题分析", icon=":material/notification_important:")
@@ -140,7 +144,7 @@ if st.session_state.username_flag:
         calendar = st.Page("calender.py", title="打卡记录", icon = ":material/dashboard:")
         pg = st.navigation({"面板":[calendar],"打卡":[delete_page],"账号":[create_page]})
     else:
-        done = clearUp(review_list, model_path, result_path)
+        #done = clearUp(review_list, model_path, result_path)
         if done:
             pg=st.navigation([st.Page("review.py", title="复习")])
 else:
