@@ -75,7 +75,16 @@ if "input_size" not in st.session_state:
 if "net" not in st.session_state:
     st.session_state.net = ISNetDIS()
     st.session_state.net.load_state_dict(torch.load("isnet.pth", map_location="cpu"))
+
+
 if st.session_state.username_flag:
+    if os.path.exists(f"{st.session_state.user}_cal.pkl"):
+        array = pickle.load(open(f"{st.session_state.user}_cal.pkl", "rb"))
+        for x in array['打卡状态']:
+            if x == "✅":
+                st.session_state.progress+=1
+    else:
+        st.write("还没有布置打卡呢")
     dataset_path=f"{st.session_state.user}_wr"  #Your dataset path
     model_path="isnet.pth"  # the model path
     result_path=f"{st.session_state.user}_res"  #The folder path that you want to save the results
