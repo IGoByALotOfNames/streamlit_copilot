@@ -63,7 +63,7 @@ def find_files(usr_name, days_list):
     return matching_files
 times = [0,2,4,7,15]
 review_list = find_files(st.session_state.user, times)
-stackPDF(st.session_state.review_list, f"{st.session_state.user}.pdf")
+stackPDF(review_list, f"{st.session_state.user}.pdf")
 with open(f"{st.session_state.user}.pdf", 'rb') as file:
     file_contents = file.read()
 
