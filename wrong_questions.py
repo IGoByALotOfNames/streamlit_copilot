@@ -261,7 +261,7 @@ else:
                         crop=clearUp(image, "isnet.pth")
                         cv2.imwrite(f"{st.session_state.user}-"+datetime.now().strftime("%Y_%m_%d")+".png", crop)
                         #cv2.imwrite(f"{st.session_state.user}_"+datetime.now().strftime("%Y_%m_%d")+".png", image)
-                        if crop != None:
+                        if len(crop):
                             st.page_link("calender.py",label="打卡✅")
                 if st.session_state.stage == 0:
                     st.progress(100)
