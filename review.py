@@ -37,6 +37,31 @@ def stackPDF(image_paths,output):
         current_height -= new_height
     c.save()
 result_path=f"{st.session_state.user}_res/"  #The folder path that you want to save the results
+def find_files(usr_name, days_list):
+    # List to store the matching files
+    matching_files = []
+    
+    for filename in os.listdir():
+        # Extract date from filename
+        file_date_str = filename
+        #st.write(file_date_str.split("."))
+
+        if file_date_str.split("-")[0] == usr_name:
+            
+
+            file_date = datetime.strptime(file_date_str.split("-")[1].replace(".png",""), '%Y_%m_%d')
+            # Check if file matches any of the days in the list
+            for days in days_list:
+                target_date = file_date + timedelta(days=days)
+                target_date_str = target_date.strftime('%Y_%m_%d')
+                #st.write(target_date_str+".png")
+                
+                if os.path.exists(f"{usr_name}-{target_date_str}.png"):
+                    matching_files.append([f"{usr_name}-{target_date_str}.png",days])
+
+    return matching_files
+times = [0,2,4,7,15]
+review_list = find_files(st.session_state.user, times)
 stackPDF(st.session_state.review_list, f"{st.session_state.user}.pdf")
 with open(f"{st.session_state.user}.pdf", 'rb') as file:
     file_contents = file.read()
