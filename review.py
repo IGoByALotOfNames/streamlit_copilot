@@ -61,7 +61,7 @@ def find_files(usr_name, days_list):
                     matching_files.append([f"{usr_name}-{target_date_str}.png",days])
 
     return matching_files
-times = [0,2,4,7,15]
+times = [1,2,4,7,15]
 review_list = find_files(st.session_state.user, times)
 stackPDF(review_list, f"{st.session_state.user}.pdf")
 with open(f"{st.session_state.user}.pdf", 'rb') as file:
