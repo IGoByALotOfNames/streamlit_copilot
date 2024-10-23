@@ -47,8 +47,8 @@ def find_files(usr_name, days_list):
             for days in days_list:
                 target_date = file_date + timedelta(days=days)
                 target_date_str = target_date.strftime('%Y_%m_%d')
-                if os.path.exists(os.path.join(directory, target_date_str+".png")):
-                    matching_files.append([os.path.join(directory,filename),days])
+                if os.path.exists(target_date_str+".png"):
+                    matching_files.append([target_date_str+".png",days])
 
     return matching_files
 
