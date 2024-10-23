@@ -163,7 +163,7 @@ else:
                             os.mkdir(f"{st.session_state.user}_wr")
                     file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
                     image = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
-                    cv2.imwrite(datetime.now().strftime("%Y_%m_%d")+".pkl", image)
+                    cv2.imwrite(datetime.now().strftime("%Y_%m_%d")+".png", image)
                     os.system(f"ls")
                     if not os.path.isdir(f"{st.session_state.user}_res"):
                             os.mkdir(f"{st.session_state.user}_res")
