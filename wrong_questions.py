@@ -15,6 +15,7 @@ from torchvision.transforms.functional import normalize
 def clearUp(im, model_path, result_path):
     input_size = [1024, 1024]
     net = st.session_state.net
+    net.eval()
     with torch.no_grad():
             
             if len(im.shape) < 3:
