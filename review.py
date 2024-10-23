@@ -6,8 +6,6 @@ from PIL import Image
 from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas
 import time
-from glob import glob
-from tqdm import tqdm
 import cv2
 import torch, gc
 import torch.nn as nn
