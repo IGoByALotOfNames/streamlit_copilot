@@ -78,10 +78,10 @@ if "net" not in st.session_state:
 if "progress" not in st.session_state:
     st.session_state.progress=0
     if os.path.exists(f"{st.session_state.user}_cal.pkl"):
-    array = pickle.load(open(f"{st.session_state.user}_cal.pkl", "rb"))
-    for x in array['打卡状态']:
-        if x == "✅":
-            st.session_state.progress+=1
+        array = pickle.load(open(f"{st.session_state.user}_cal.pkl", "rb"))
+        for x in array['打卡状态']:
+            if x == "✅":
+                st.session_state.progress+=1
 
 if st.session_state.username_flag:
 
