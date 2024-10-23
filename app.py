@@ -38,16 +38,18 @@ def find_files(usr_name, days_list):
     for filename in os.listdir():
         # Extract date from filename
         file_date_str = filename
-        st.write(file_date_str.split("-")[0])
-        if file_date_str.split("-")[0] == usr_name:
 
-            file_date = datetime.strptime(file_date_str.split("-")[1].replace(".png",""), '%Y_%m_%d')
-            # Check if file matches any of the days in the list
-            for days in days_list:
-                target_date = file_date + timedelta(days=days)
-                target_date_str = target_date.strftime('%Y_%m_%d')
-                if os.path.exists(target_date_str+".png"):
-                    matching_files.append([target_date_str+".png",days])
+        if file_data_str.split(".")[1] == ".png":
+            st.write(file_date_str.split("-")[0])
+            if file_date_str.split("-")[0] == usr_name:
+    
+                file_date = datetime.strptime(file_date_str.split("-")[1].replace(".png",""), '%Y_%m_%d')
+                # Check if file matches any of the days in the list
+                for days in days_list:
+                    target_date = file_date + timedelta(days=days)
+                    target_date_str = target_date.strftime('%Y_%m_%d')
+                    if os.path.exists(target_date_str+".png"):
+                        matching_files.append([target_date_str+".png",days])
 
     return matching_files
 
