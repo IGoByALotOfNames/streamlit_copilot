@@ -12,7 +12,7 @@ import torch,torchvision
 import torch
 import torch.nn.functional as F
 from torchvision.transforms.functional import normalize
-def clearUp(im, model_path, result_path):
+def clearUp(im, model_path):
     input_size = [1024, 1024]
     net = st.session_state.net
     net.eval()
@@ -67,8 +67,8 @@ def clearUp(im, model_path, result_path):
             # io.imsave(result_path + im_name + "_foreground.png", foreground)
             wite = np.ones_like(im) * 255
             cropped = np.where(result == 0, wite, mask)
-            cv2.imwrite(result_path + ".png", cropped)
-    return True
+            
+    return cropped
 st.title("错题总结")
 stages = [("知识点总结", "请详细描述这道题的知识点"), ("考点总结", "请详细描述这道题的考点（知识点的拓展)"),
           ("下次如何避免出错", "根据以上提供的答案，描述如和下次同样考点不出错")]
@@ -258,9 +258,10 @@ else:
                         st.session_state.stage=0
                         file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
                         image = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
-                        done=clearUp(image, "isnet.pth", f"{st.session_state.user}_"+datetime.now().strftime("%Y_%m_%d"))
+                        crop=clearUp(image, "isnet.pth")
+                        cv2.imwrite(datetime.now().strftime("%Y_%m_%d")+".png", crop)
                         #cv2.imwrite(f"{st.session_state.user}_"+datetime.now().strftime("%Y_%m_%d")+".png", image)
-                        if done:
+                        if crop:
                             st.page_link("calender.py",label="打卡✅")
                 if st.session_state.stage == 0:
                     st.progress(100)
