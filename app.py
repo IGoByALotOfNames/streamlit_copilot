@@ -49,6 +49,7 @@ def find_files(usr_name, days_list):
                 target_date = file_date + timedelta(days=days)
                 st.write(target_date)
                 target_date_str = target_date.strftime('%Y_%m_%d')
+                st.write(target_date_str)
                 
                 if os.path.exists(target_date_str+".png"):
                     matching_files.append([target_date_str+".png",days])
