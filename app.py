@@ -125,6 +125,12 @@ if "install_font" not in st.session_state:
     st.session_state.install_font = False
 if "username_flag" not in st.session_state:
     st.session_state.username_flag = False
+
+if "input_size" not in st.session_state:
+    st.session_state.input_size = [1024, 1024]
+if "net" not in st.session_state:
+    st.session_state.net = ISNetDIS()
+    st.session_state.net.load_state_dict(torch.load(model_path, map_location="cpu"))
 if st.session_state.username_flag:
     dataset_path=f"{st.session_state.user}_wr"  #Your dataset path
     model_path="isnet.pth"  # the model path
@@ -132,11 +138,7 @@ if st.session_state.username_flag:
     st.title(f"你好！{st.session_state.user}")
     times = [0,2,4,7,15]
     review_list = find_files(dataset_path, times)
-    st.session_state.input_size = [1024, 1024]
-    st.session_state.net = ISNetDIS()
-    st.session_state.net.load_state_dict(torch.load(model_path, map_location="cpu"))
-    st.session_state.net.eval()
-    
+    os.system("ls")
     if len(review_list) == 0:
         delete_page = st.Page("wrong_questions.py", title="错题分析", icon=":material/notification_important:")
         create_page = st.Page(logout, title="登出", icon=":material/logout:")
