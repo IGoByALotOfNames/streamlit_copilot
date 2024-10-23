@@ -52,7 +52,6 @@ with col[1]:
     return ",".join(colors[0:int(percentage // 10)])
   # HTML and CSS for the jar progress bar
   st.title("知识罐")
-  st.progress(st.session_state.progress*10)
   jar_html = f"""
   <div style="width: 205px; height: 30px; border: 2px solid #000; position: relative; margin: auto; border-radius: 0px;background-color:black;border-radius: 5px;"> 
   <div style="width: 200px; height: 350px; border: 2px solid #000; position: relative; margin: auto; border-radius: 20px; top:20px;">
