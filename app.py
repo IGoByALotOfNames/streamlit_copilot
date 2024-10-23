@@ -39,7 +39,7 @@ def find_files(usr_name, days_list):
         # Extract date from filename
         file_date_str = filename
 
-        if file_data_str.split(".")[1] == ".png":
+        if file_date_str.split(".")[1] == ".png":
             st.write(file_date_str.split("-")[0])
             if file_date_str.split("-")[0] == usr_name:
     
