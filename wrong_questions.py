@@ -68,6 +68,7 @@ def clearUp(im, model_path, result_path):
             wite = np.ones_like(im) * 255
             cropped = np.where(result == 0, wite, mask)
             cv2.imwrite(result_path + ".png", cropped)
+    return True
 st.title("错题总结")
 stages = [("知识点总结", "请详细描述这道题的知识点"), ("考点总结", "请详细描述这道题的考点（知识点的拓展)"),
           ("下次如何避免出错", "根据以上提供的答案，描述如和下次同样考点不出错")]
@@ -257,11 +258,10 @@ else:
                         st.session_state.stage=0
                         file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
                         image = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
-                        clearUp(image, "isnet.pth", f"{st.session_state.user}_"+datetime.now().strftime("%Y_%m_%d"))
+                        done=clearUp(image, "isnet.pth", f"{st.session_state.user}_"+datetime.now().strftime("%Y_%m_%d"))
                         #cv2.imwrite(f"{st.session_state.user}_"+datetime.now().strftime("%Y_%m_%d")+".png", image)
-                        
-
-                        st.page_link("calender.py",label="打卡✅")
+                        if done:
+                            st.page_link("calender.py",label="打卡✅")
                 if st.session_state.stage == 0:
                     st.progress(100)
                 else:
