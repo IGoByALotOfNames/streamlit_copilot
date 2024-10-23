@@ -84,7 +84,7 @@ if st.session_state.username_flag:
     st.progress(st.session_state.progress*10)
 
     #st.title(f"你好！{st.session_state.user}")
-    times = [0,2,4,7,15]
+    times = [1,2,4,7,15]
 
     review_list = find_files(st.session_state.user, times)
     
