@@ -74,3 +74,7 @@ st.download_button(
     file_name="复习试卷.pdf",
     mime="application/pdf"
 )
+
+for img in review_list:
+    os.remove(img[0])
+st.rerun()
