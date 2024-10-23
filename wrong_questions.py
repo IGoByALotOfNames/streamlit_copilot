@@ -256,14 +256,15 @@ else:
                         pickle.dump([], open(f"{st.session_state.user}.pkl", "wb"))
                         st.session_state.genFlag=False
                         st.session_state.stage=0
-                        file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
-                        image = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
-                        crop=clearUp(image, "isnet.pth")
-                        cv2.imwrite(f"{st.session_state.user}-"+datetime.now().strftime("%Y_%m_%d")+".png", crop)
-                        #cv2.imwrite(f"{st.session_state.user}_"+datetime.now().strftime("%Y_%m_%d")+".png", image)
-                        if len(crop):
-                            st.page_link("calender.py",label="打卡✅")
+                        
                 if st.session_state.stage == 0:
                     st.progress(100)
+                    file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
+                    image = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
+                    crop=clearUp(image, "isnet.pth")
+                    cv2.imwrite(f"{st.session_state.user}-"+datetime.now().strftime("%Y_%m_%d")+".png", crop)
+                    #cv2.imwrite(f"{st.session_state.user}_"+datetime.now().strftime("%Y_%m_%d")+".png", image)
+                    if len(crop):
+                        st.page_link("calender.py",label="打卡✅")
                 else:
                     st.progress(st.session_state.stage * 20)
