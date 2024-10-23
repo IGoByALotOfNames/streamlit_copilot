@@ -19,8 +19,7 @@ base = ""
 def stackPDF(image_paths,output):
     c = canvas.Canvas(output, pagesize=A4)
     # Load images and get their dimensions
-    st.write(image_paths)
-    images = [Image.open(img_path) for img_path in image_paths]
+    images = [Image.open(img_path[0]) for img_path in image_paths]
     page_width, page_height = A4
     current_height = page_height
 
