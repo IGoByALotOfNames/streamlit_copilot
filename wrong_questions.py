@@ -167,7 +167,7 @@ else:
                             file_bytes = np.asarray(bytearray(uploaded_file.read()), dtype=np.uint8)
                             image = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
                             cv2.imwrite(f"{st.session_state.user}_wr/"+datetime.now().strftime("%Y/%m/%d")+".png", image)
-                            os.system(f"ls /{st.session_state.user}_wr")
+                            os.system(f"ls {st.session_state.user}_wr")
                     with st.chat_message("assistant"):
                         st.title("恭喜你完成错题总结！")
                         if os.path.exists(f"{st.session_state.user}_callnum.pkl"):
