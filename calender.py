@@ -20,6 +20,7 @@ else:
   ((thesis, thesisdt), (test, testdt), (prevention, preventiondt), (qtype, qtypedt)) = (0, 0), (0, 0), (0, 0), (0, 0)
 #os.system(f"ls")
 st.session_state.progress=0
+st.progress(st.session_state.progress*10)
 with col[0]:
   st.title("对话数据")
   st.metric(label="知识点总结引导对话数", value=thesis, delta=thesisdt)
