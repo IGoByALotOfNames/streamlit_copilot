@@ -17,7 +17,7 @@ if os.path.exists(f"{st.session_state.user}_callnum.pkl"):
 
 else:
   ((thesis, thesisdt), (test, testdt), (prevention, preventiondt), (qtype, qtypedt)) = (0, 0), (0, 0), (0, 0), (0, 0)
-os.system(f"ls {st.session_state.user}_wr")
+os.system(f"ls ./李天恩_wr")
 st.session_state.progress=0
 with col[0]:
   st.title("对话数据")
