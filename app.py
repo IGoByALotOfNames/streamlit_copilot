@@ -19,7 +19,7 @@ def login():
         if username != "":
             
             if not username in student_names:
-                text.write("<font style='red'>无效姓名</font>",key=x)
+                #text.write("<font style='red'>无效姓名</font>",key=x)
                 checkN(x+1)
             else:
                 st.session_state.username_flag=True
