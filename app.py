@@ -72,13 +72,16 @@ if "username_flag" not in st.session_state:
 
 if "input_size" not in st.session_state:
     st.session_state.input_size = [1024, 1024]
-if "net" not in st.session_state:
-    st.session_state.net = ISNetDIS()
-    st.session_state.net.load_state_dict(torch.load("isnet.pth", map_location="cpu"))
+@st.cache_resource  # 👈 Add the caching decorator
+def load_model():
+    net = ISNetDIS()
+    net.load_state_dict(torch.load("isnet.pth", map_location="cpu"))
+    return net
 if "progress" not in st.session_state:
     st.session_state.progress = 0
 if st.session_state.username_flag:
     if st.session_state.user != st.secrets["ADMIN_USERNAME"]:
+        st.session_state.net = load_model()
         dataset_path=f"{st.session_state.user}_wr"  #Your dataset path
         model_path="isnet.pth"  # the model path
         result_path=f"{st.session_state.user}_res"  #The folder path that you want to save the results
