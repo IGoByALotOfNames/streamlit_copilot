@@ -12,6 +12,6 @@ def watch_directory():
             for file in added_files:
                 st.write(f"New file added: {file}")
         before = after
-
+st.write("huh")
 # Example usage
 watch_directory()
