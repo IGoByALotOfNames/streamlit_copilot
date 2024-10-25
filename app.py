@@ -76,28 +76,31 @@ if "net" not in st.session_state:
     st.session_state.net = ISNetDIS()
     st.session_state.net.load_state_dict(torch.load("isnet.pth", map_location="cpu"))
 if st.session_state.username_flag:
-    dataset_path=f"{st.session_state.user}_wr"  #Your dataset path
-    model_path="isnet.pth"  # the model path
-    result_path=f"{st.session_state.user}_res"  #The folder path that you want to save the results
-    st.markdown(f"<p style='text-align: left; position: absolute; top:15px;'>第{(st.session_state.progress//10)*10}天</p>", unsafe_allow_html = True)
-    st.markdown(f"<p style='text-align: right;'>第{(st.session_state.progress//10+1)*10}天</p>", unsafe_allow_html = True)
-    st.progress(st.session_state.progress*10)
-
-    #st.title(f"你好！{st.session_state.user}")
-    times = [1,2,4,7,15]
-
-    review_list = find_files(st.session_state.user, times)
+    if st.session_state.user != st.secrets["ADMIN_USERNAME"]:
+        dataset_path=f"{st.session_state.user}_wr"  #Your dataset path
+        model_path="isnet.pth"  # the model path
+        result_path=f"{st.session_state.user}_res"  #The folder path that you want to save the results
+        st.markdown(f"<p style='text-align: left; position: absolute; top:15px;'>第{(st.session_state.progress//10)*10}天</p>", unsafe_allow_html = True)
+        st.markdown(f"<p style='text-align: right;'>第{(st.session_state.progress//10+1)*10}天</p>", unsafe_allow_html = True)
+        st.progress(st.session_state.progress*10)
     
-    #os.system("ls")
-    if len(review_list) == 0:
-        delete_page = st.Page("wrong_questions.py", title="错题分析", icon=":material/notification_important:")
-        create_page = st.Page(logout, title="登出", icon=":material/logout:")
-        learning = st.Page("learning_curve.py", title="记忆曲线", icon="📉")
-        calendar = st.Page("calender.py", title="打卡记录", icon = ":material/dashboard:")
-        pg = st.navigation({f"{st.session_state.user}的":[calendar,delete_page],f"{st.session_state.user}的账号":[create_page]})
-    else:
+        #st.title(f"你好！{st.session_state.user}")
+        times = [1,2,4,7,15]
+    
+        review_list = find_files(st.session_state.user, times)
         
-        pg=st.navigation([st.Page("review.py", title="复习")])
+        #os.system("ls")
+        if len(review_list) == 0:
+            delete_page = st.Page("wrong_questions.py", title="错题分析", icon=":material/notification_important:")
+            create_page = st.Page(logout, title="登出", icon=":material/logout:")
+            learning = st.Page("learning_curve.py", title="记忆曲线", icon="📉")
+            calendar = st.Page("calender.py", title="打卡记录", icon = ":material/dashboard:")
+            pg = st.navigation({f"{st.session_state.user}的":[calendar,delete_page],f"{st.session_state.user}的账号":[create_page]})
+        else:
+            
+            pg=st.navigation([st.Page("review.py", title="复习")])
+    else:
+        pg = st.navigation([st.Page('admin.py')])
 else:
     pg = st.navigation([st.Page(login)])
 pg.run()
