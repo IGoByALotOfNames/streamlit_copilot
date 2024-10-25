@@ -76,6 +76,7 @@ if "input_size" not in st.session_state:
 def load_model():
     net = ISNetDIS()
     net.load_state_dict(torch.load("isnet.pth", map_location="cpu"))
+    net.eval()
     return net
 if "progress" not in st.session_state:
     st.session_state.progress = 0
