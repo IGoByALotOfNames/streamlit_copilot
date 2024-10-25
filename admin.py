@@ -2,11 +2,11 @@ import os
 import time
 import streamlit as st
 
-def watch_directory(path_to_watch):
-    before = dict([(f, None) for f in os.listdir(path_to_watch)])
+def watch_directory():
+    before = dict([(f, None) for f in os.listdir()])
     while True:
         time.sleep(10)  # Pause for 10 seconds
-        after = dict([(f, None) for f in os.listdir(path_to_watch)])
+        after = dict([(f, None) for f in os.listdir()])
         added_files = [f for f in after if not f in before]
         if added_files:
             for file in added_files:
@@ -14,4 +14,4 @@ def watch_directory(path_to_watch):
         before = after
 
 # Example usage
-watch_directory('')
+watch_directory()
