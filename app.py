@@ -78,7 +78,7 @@ if "net" not in st.session_state:
 if "progress" not in st.session_state:
     st.session_state.progress = 0
 if st.session_state.username_flag:
-    st.write(st.session_state.user != st.secrets["ADMIN_USERNAME"])
+    
     if st.session_state.user != st.secrets["ADMIN_USERNAME"]:
         dataset_path=f"{st.session_state.user}_wr"  #Your dataset path
         model_path="isnet.pth"  # the model path
@@ -88,6 +88,7 @@ if st.session_state.username_flag:
             for x in array['打卡状态']:
               if x == "✅":
                 st.session_state.progress+=1
+        st.write(st.session_state.user != st.secrets["ADMIN_USERNAME"])
         st.markdown(f"<p style='text-align: left; position: absolute; top:15px;'>第{(st.session_state.progress//10)*10}天</p>", unsafe_allow_html = True)
         st.markdown(f"<p style='text-align: right;'>第{(st.session_state.progress//10+1)*10}天</p>", unsafe_allow_html = True)
         st.progress(st.session_state.progress*10)
