@@ -78,7 +78,7 @@ if "net" not in st.session_state:
 if "progress" not in st.session_state:
     st.session_state.progress = 0
 if st.session_state.username_flag:
-    
+    os.system(f"echo {st.session_state.user != st.secrets["ADMIN_USERNAME"]}")
     if st.session_state.user != st.secrets["ADMIN_USERNAME"]:
         dataset_path=f"{st.session_state.user}_wr"  #Your dataset path
         model_path="isnet.pth"  # the model path
