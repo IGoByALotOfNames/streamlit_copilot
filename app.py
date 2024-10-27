@@ -81,7 +81,7 @@ def load_model():
 if "progress" not in st.session_state:
     st.session_state.progress = 0
 if not os.path.exists("CNISNET/isnet.pth"):
-    os.system("git clone https://huggingface.co/Inoob/CNISNET")
+    os.system("git lfs clone https://huggingface.co/Inoob/CNISNET")
 
 if os.path.exists("CNISNET/isnet.pth"):
     os.system("ls CNISNET")
