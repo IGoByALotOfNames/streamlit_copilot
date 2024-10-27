@@ -83,6 +83,7 @@ if "progress" not in st.session_state:
 os.system("git clone https://huggingface.co/Inoob/CNISNET")
 
 if os.path.exists("CNISNET/isnet.pth"):
+    os.system("ls")
     if st.session_state.username_flag:
         if st.session_state.user != st.secrets["ADMIN_USERNAME"]:
             st.session_state.net = load_model()
@@ -116,4 +117,4 @@ if os.path.exists("CNISNET/isnet.pth"):
             pg = st.navigation([st.Page('admin.py')])
     else:
         pg = st.navigation([st.Page(login)])
-pg.run()
+    pg.run()
