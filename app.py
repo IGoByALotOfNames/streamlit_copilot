@@ -75,7 +75,7 @@ if "input_size" not in st.session_state:
 @st.cache_resource  # 👈 Add the caching decorator
 def load_model():
     net = ISNetDIS()
-    net.load_state_dict(torch.load("isnet.pth", map_location="cpu"))
+    net.load_state_dict(torch.load("CNISNET/isnet.pth", map_location="cpu"))
     net.eval()
     return net
 if "progress" not in st.session_state:
